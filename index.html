@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<textarea  cols="30" rows="10"></textarea>
+<button onclick="convert()">submit</button>
+
+<textarea cols="30" rows="10"></textarea>
+<button onclick="convert_to_object_array()">submit</button>
+
+<script>
+    function convert(){
+        start_array = [];
+        html_string = document.getElementsByTagName('textarea')[0].value;
+        get_element();
+        document.getElementsByTagName('textarea')[1].value ='['+ start_array +']';
+    }
+    function convert_to_object_array(){
+
+    }
+    html_string='<div class="made_up"><span></span></div><div></div><div></div><span></span>';
+    start_array=[];
+    end_array=[];
+
+    function get_element(){
+        start_array.push(html_string.substring(html_string.indexOf('<'),html_string.indexOf('>')+1));
+        html_string=html_string.substring(html_string.indexOf('>')+1,html_string.length);
+        if (html_string.length>1){
+            get_element();
+        }
+    }
+    get_element();
+    console.log(start_array,html_string)
+
+
+</script>
+
+</body>
+</html>
